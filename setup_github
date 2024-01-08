@@ -1,0 +1,66 @@
+Github's free account allows you to have both private and public repos. 
+
+To create your own github account and learn how to get started, follow these steps:
+
+Section A
+1. Go to https://github.com/ and create a new account (select the free version first. You can always pay money later)
+2. After your account is created and you are logged in, go to Your Profile Pic and click "Your profile". 
+3. Click your Image to change your avatar. Doing this will also bring you to the settings page. 
+4. After changing your profile, update any of these fields as necessary. 
+5. Now we need to setup the SSH keys. Click the SSH and GPG keys link. 
+6. Click "New SSH key"
+7. a) Give it a title such as "myname007"
+   b) Key type: Authentication Key
+   c) Key: paste in your public key
+   d) confused? google "how to create ssh key", or follow these steps to do so on a linux system:
+
+  -- ssh key steps:
+    i) ssh-keygen -t ed25519 -C "your_email@example.com"
+    ii) give it a file name, such as "myname007"
+    iii) enter a passphrase for enhanced security. Leave it blank and hit enter if you are lazy and don't care about security
+    iv) read your pub file and paste the results in github...step 7 c) from above. if stored in default location, can run: /home/{user}/.ssh/id_ed25519.pub
+
+8. Once saved in github, you need to activate it for use (at least I have to...please let me know if there is a way to skip this step). On your local system, run the following commands (replace ssh path and name as necessary):
+  eval "$(ssh-agent -s)"
+  ssh-add ~/.ssh/id_ed25519
+
+
+Section B
+
+Creating a repo via the GUI is easy, so here's the steps to do it remotely. Actually, just read it from the source: https://cli.github.com/manual/gh_repo_create
+
+Once you have a repo created, you can clone it as such. For example, referencing my repo "github":
+
+1. I prefer to create a working github folder. Make one, such as "~/git", and cd to it
+2. git clone git@github.com:{youraccount}/github.git 
+***if you receive an error...did you activate ssh in step 8 from section A?
+3. You will now have a subfolder auto-created with a name that matches your git repo. For this example, ~/git/github/ now exists ...not confusing at all, eh? :D
+
+Section B
+
+Making a change, adding, committing, and pushing:
+
+GIT - From 0 to Hero
+
+cd ../github/github
+git status
+git checkout master
+git status
+git pull
+git branch
+git checkout -b feature/Issue-0001_Updating_Git_Help
+git branch
+~build/modify your code~
+git checkout master
+git pull
+git checkout feature/Issue-0001_Updating_Git_Help
+git add *  
+git commit -m "Issue-0001_Updating_Git_Help"
+git push origin feature/Issue-0001_Updating_Git_Help
+copy URL posted in the terminal
+browse to URL and merge request
+
+
+You can skip the branch process and make changes directly to master. However, you may as well get used to this process if you plan to work with a team of people. It also helps as a safety net prior to making a change to your repo. 
+
+
